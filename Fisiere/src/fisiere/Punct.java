@@ -6,8 +6,16 @@
 package fisiere;
 
 
-public class Punct implements Comparable<Punct>
+public class Punct implements Comparable<Punct>, Transposeble<Punct>
 {
+
+    @Override
+    public Punct transpose(Punct t) {
+        this.x += t.x;
+        this.y += t.y;
+        this.z += t.z;
+        return this;
+    }
     double distance(Punct a, Punct b)
     {
         return Math.sqrt( Math.pow(a.x - b.x,2.0) + 

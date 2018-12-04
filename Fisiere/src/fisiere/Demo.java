@@ -5,6 +5,8 @@
  */
 package fisiere;
 
+import java.awt.Point;
+
 /**
  *
  * @author z003w68c
@@ -15,6 +17,8 @@ public class Demo {
         Fisiere f = new Fisiere();
         f.Citire("Puncte.txt");
         f.Afiseaza();
+        f.Transpose(new Punct(1,1,1));
         f.Scriere("Out.csv");
+        
     }
 }

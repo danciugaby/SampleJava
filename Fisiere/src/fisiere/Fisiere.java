@@ -16,11 +16,18 @@ public class Fisiere {
     
     Set<Punct> puncte;
 
+    void Transpose(Punct newp)
+    {
+        for(Punct p : puncte)
+        {
+            p.transpose(newp);
+        }
+    }
     /**
      * @param args the command line arguments
      */
     void Citire(String numesifisier) {
-        Set<Punct> list = new TreeSet<>();
+        Set<Punct> list = new TreeSet<>(new PunctComparator());
         try {
             BufferedReader br = new BufferedReader(new FileReader(new File(numesifisier)));
             String line = "";
