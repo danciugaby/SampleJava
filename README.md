@@ -1,3 +1,3 @@
 # SampleJava
 SampleJava
-ceva bla bla
+exemplu examen

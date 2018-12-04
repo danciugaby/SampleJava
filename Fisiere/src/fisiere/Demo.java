@@ -9,7 +9,7 @@ import java.awt.Point;
 
 /**
  *
- * @author z003w68c
+ * @author gabi
  */
 public class Demo {
     public static void main(String[] args) {         

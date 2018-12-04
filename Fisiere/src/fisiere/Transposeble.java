@@ -7,7 +7,7 @@ package fisiere;
 
 /**
  *
- * @author z003w68c
+ * @author gabi
  */
 public interface Transposeble<T> {
     public T transpose(T t);

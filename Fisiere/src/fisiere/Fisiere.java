@@ -10,7 +10,7 @@ import java.util.*;
 
 /**
  *
- * @author z003w68c
+ * @author gabi
  */
 public class Fisiere {
     
