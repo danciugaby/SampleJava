@@ -14,28 +14,40 @@ import java.util.*;
  */
 public class Fisiere {
     
-    Set<Punct> puncte;
+    HashMap<Punct, Integer>  puncte;
 
     void Transpose(Punct newp)
     {
-        for(Punct p : puncte)
+         HashMap<Punct, Integer>  puncteaux = new HashMap<>();
+        for(Punct  p : puncte.keySet())
         {
-            p.transpose(newp);
+            int val = puncte.get(p);
+            puncteaux.put( p.transpose(newp), val);
         }
+        puncte =  puncteaux;
     }
     /**
      * @param args the command line arguments
      */
     void Citire(String numesifisier) {
-        Set<Punct> list = new TreeSet<>(new PunctComparator());
+        HashMap<Punct, Integer> list = new HashMap<Punct, Integer>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(new File(numesifisier)));
             String line = "";
             while ((line = br.readLine()) != null) {
                 String[] s = line.split(" ");
-                list.add(new Punct(Integer.parseInt(s[0]),
+                Punct p = new Punct(Integer.parseInt(s[0]),
                         Integer.parseInt(s[1]),
-                        Integer.parseInt(s[2])));
+                        Integer.parseInt(s[2]));
+                
+                if (list.containsKey(p))
+                {
+                    int val = list.get(p);
+                    val++;
+                    list.put(p,val);
+                }
+                else
+                    list.put(p,1);
             }
             
         } catch (IOException ex) {
@@ -45,8 +57,8 @@ public class Fisiere {
     }
     
     void Afiseaza() {
-        for (Punct p : puncte) {
-            System.out.println(p);
+        for (Punct p : puncte.keySet()) {
+            System.out.println(p + " \t " + puncte.get(p).intValue());
         }
     }
     
@@ -55,8 +67,10 @@ public class Fisiere {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(new File(numesifisier)));
             bw.write("\"x\",\"y\",\"z\"\r\n");
-            for (Punct p : puncte) {
-                bw.write(p.Write() + "\r\n");
+            Set s = puncte.keySet();
+            for (Punct p : puncte.keySet()) {
+                Object o = puncte.get(p);
+                bw.write(p.Write() + "\t " + puncte.get(p).intValue() + "\r\n");
             }
             bw.flush();
             bw.close();
