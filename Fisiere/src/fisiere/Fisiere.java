@@ -5,17 +5,57 @@
  */
 package fisiere;
 
+import java.io.*;
+import java.util.*;
+
 /**
  *
  * @author z003w68c
  */
 public class Fisiere {
+    
+    Set<Punct> puncte;
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    void Citire(String numesifisier) {
+        Set<Punct> list = new TreeSet<>();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(new File(numesifisier)));
+            String line = "";
+            while ((line = br.readLine()) != null) {
+                String[] s = line.split(" ");
+                list.add(new Punct(Integer.parseInt(s[0]),
+                        Integer.parseInt(s[1]),
+                        Integer.parseInt(s[2])));
+            }
+            
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+        puncte = list;
     }
     
+    void Afiseaza() {
+        for (Punct p : puncte) {
+            System.out.println(p);
+        }
+    }
+    
+    void Scriere(String numesifisier) {
+        
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(new File(numesifisier)));
+            bw.write("\"x\",\"y\",\"z\"\r\n");
+            for (Punct p : puncte) {
+                bw.write(p.Write() + "\r\n");
+            }
+            bw.flush();
+            bw.close();
+            
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }        
+    }
 }
